@@ -1,0 +1,21 @@
+name: Opened PR
+
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches: [ "main" ]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord message
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          PR_URL: ${{ github.event.pull_request.url }}
+        run: |
+          set -e
+          CONTENT="テスト \n [URL]($PR_URL)"
+          curl -H "Content-Type: application/json" \
+               -d "{\"content\":\"${CONTENT}\"}" \
+               "$DISCORD_WEBHOOK_URL"
