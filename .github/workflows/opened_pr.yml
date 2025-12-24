@@ -19,7 +19,7 @@ jobs:
           USER_NAME: ${{ github.triggering_actor }}
         run: |
           set -e
-          CONTENT="プルリクエストが発行されました、レビューを行ってください。\n  リンク: [$PR_TITLE]($PR_URL) \n  発行者: $USER_NAME"
+          CONTENT="プルリクエストが発行されました、レビューをお願いします!\n  リンク: [$PR_TITLE]($PR_URL) \n  発行者: $USER_NAME"
           curl -H "Content-Type: application/json" \
                -d "{\"content\":\"${CONTENT}\"}" \
                "$DISCORD_WEBHOOK_URL"
