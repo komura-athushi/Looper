@@ -1,14 +1,14 @@
-name: Opened PR
+name: Merged PR
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [closed]
     branches: [ "main" ]
 
 jobs:
   notify:
-    # Draftではない場合
-    if: github.event.pull_request.draft == false
+    # マージされた場合
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Send Discord message
@@ -19,7 +19,7 @@ jobs:
           USER_NAME: ${{ github.triggering_actor }}
         run: |
           set -e
-          CONTENT="プルリクエストが発行されました、レビューを行ってください。\n  リンク: [$PR_TITLE]($PR_URL) \n  発行者: $USER_NAME"
+          CONTENT="✅ プルリクエストがマージされました。\n  リンク: [$PR_TITLE]($PR_URL) \n  実施者: $USER_NAME"
           curl -H "Content-Type: application/json" \
                -d "{\"content\":\"${CONTENT}\"}" \
                "$DISCORD_WEBHOOK_URL"
