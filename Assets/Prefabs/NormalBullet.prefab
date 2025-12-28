@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8609013931679649076}
   - component: {fileID: -1996500159303076163}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: NormalBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,5 +179,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c1c46c19c2a7f48a773fcfbf755afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  speed: 12
-  lifeTime: 4
+  bulletConfig: {fileID: 11400000, guid: 69d7d1b0706cc4f41988820282cd350e, type: 2}

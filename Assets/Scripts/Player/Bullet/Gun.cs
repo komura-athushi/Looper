@@ -1,0 +1,44 @@
+using UnityEngine;
+
+// 弾を生成するGunスクリプト
+public class Gun : MonoBehaviour
+{
+    [SerializeField] private Transform muzzle;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private GameObject burstBulletPrefab;
+
+    [SerializeField] private PlayerGaugeController gauge;
+    [SerializeField] private BulletCostConfig bulletCostConfig;
+
+    public void Fire()
+    {
+        if (muzzle == null || bulletPrefab == null) return;
+        
+
+        // もしゲージがマックスなら
+        if (gauge.Normalized >= 1f)
+        {
+            // バースト発射
+            BurstFire();
+        }
+        else {
+            NormalFire();
+        }
+    }
+    // 通常壇発射
+    private void NormalFire()
+    {
+        // ゲージ消費
+        gauge.TryConsume(bulletCostConfig.normalBulletCost);
+        // 弾発射
+        Instantiate(bulletPrefab, muzzle.position, Quaternion.identity);
+    }
+
+    private void BurstFire()
+    {
+        // ゲージ消費
+        gauge.TryConsume(bulletCostConfig.burstBulletCost);
+        // バースト弾発射
+        Instantiate(burstBulletPrefab, muzzle.position, Quaternion.identity);
+    }
+}

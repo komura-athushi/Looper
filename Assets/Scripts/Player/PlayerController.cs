@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
+// プレイヤークラス
 [RequireComponent(typeof(Gun))]
 public class PlayerController : MonoBehaviour
 {
-    private Gun _gun;
+    private Gun _gun; // 弾の発射するGunコンポーネント
 
     private void Awake()
     {
