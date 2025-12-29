@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b24bba7e53d3ff49be9a9dcca0f92cc, type: 3}
   m_Name: Normal Enemy Config
   m_EditorClassIdentifier: Assembly-CSharp::NormalEnemyConfig
-  speed: 12
+  speed: 25
   hp: 1
   lifeTime: 5
+  enemyType: 0

@@ -2,15 +2,24 @@ using UnityEngine;
 
 public abstract class BaseEnemyController : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        Normal,
+        // 他の敵タイプを追加可能
+    }
+
+
     [SerializeField] protected EnemyConfig config;
     protected Rigidbody2D rb;
     protected int hp;
     private float lifeTime;
+    public BaseEnemyController.EnemyType enemyType;
     
     protected virtual void Start()
     {
         hp = config.hp;
         lifeTime = config.lifeTime;
+        enemyType = config.enemyType;
         rb = GetComponent<Rigidbody2D>();
     }
     protected virtual void Update() {

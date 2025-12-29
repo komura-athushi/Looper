@@ -32,6 +32,8 @@ public class Gun : MonoBehaviour
         gauge.TryConsume(bulletCostConfig.normalBulletCost);
         // 弾発射
         Instantiate(bulletPrefab, muzzle.position, Quaternion.identity);
+        // 通常弾発射音再生
+        AudioManager.Instance.PlaySound("fire");
     }
 
     private void BurstFire()
