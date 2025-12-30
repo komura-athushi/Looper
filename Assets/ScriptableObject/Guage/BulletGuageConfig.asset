@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b24bba7e53d3ff49be9a9dcca0f92cc, type: 3}
-  m_Name: Normal Enemy Config
-  m_EditorClassIdentifier: Assembly-CSharp::NormalEnemyConfig
-  speed: 40
-  hp: 1
-  lifeTime: 5
-  enemyType: 0
+  m_Script: {fileID: 11500000, guid: 4d1362723b0854848b6c92fcd7145da6, type: 3}
+  m_Name: BulletGuageConfig
+  m_EditorClassIdentifier: Assembly-CSharp::GaugeConfig
+  max: 1
+  regenPerSec: 0.25
+  regenDelayAfterUse: 0.1

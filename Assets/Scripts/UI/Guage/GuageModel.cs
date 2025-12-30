@@ -22,6 +22,13 @@ public sealed class GaugeModel
         if(Current < 0) Current = 0;
     }
 
+    // ゲージ消費可能かどうかを判定
+    public bool CanConsume(float amount)
+    {
+        amount = Mathf.Max(0, amount);
+        return Current >= amount;
+    }
+
     // ゲージを0にする
     public void ConsumeAll()
     {

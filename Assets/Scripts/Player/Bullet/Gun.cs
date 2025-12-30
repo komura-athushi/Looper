@@ -14,22 +14,25 @@ public class Gun : MonoBehaviour
     {
         if (muzzle == null || bulletPrefab == null) return;
         
-
         // もしゲージがマックスなら
         if (gauge.Normalized >= 1f)
         {
             // バースト発射
             BurstFire();
+            return;
         }
-        else {
-            NormalFire();
-        }
+        
+        // 通常発射
+        NormalFire();
     }
+
     // 通常壇発射
     private void NormalFire()
     {
-        // ゲージ消費
-        gauge.TryConsume(bulletCostConfig.normalBulletCost);
+        // ゲージ消費出来たら
+        bool isConsumed = gauge.TryConsume(bulletCostConfig.normalBulletCost);
+        if (!isConsumed) return;
+
         // 弾発射
         Instantiate(bulletPrefab, muzzle.position, Quaternion.identity);
         // 通常弾発射音再生

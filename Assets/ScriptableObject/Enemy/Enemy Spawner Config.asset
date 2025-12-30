@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Enemy Spawner Config
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnerConfig
   enemyPrefab: {fileID: 2055330008808972914, guid: 8ad03367cbc01854f86119cebd57b483, type: 3}
-  spawnInterval: 2
+  spawnInterval: 1
   enemyType: 0

@@ -48,7 +48,6 @@ public class AudioManager : MonoBehaviour
         source.loop = data.isLoop;
         source.Play();
 
-         Debug.Log($"after Play: isPlaying={source.isPlaying}, time={source.time}, samples={source.timeSamples}");
         _currentIndex = (_currentIndex + 1) % audioSourcePoolSize;
     }
 

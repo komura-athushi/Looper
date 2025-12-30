@@ -35,6 +35,11 @@ public class PlayerGaugeController : MonoBehaviour
     // ゲージを消費する
     public bool TryConsume(float amount)
     {
+        // 消費可能かチェック
+        if(!_model.CanConsume(amount))
+        {
+            return false;
+        }
         _model.TryConsume(amount);
 
         _regenBlockTimer = config.regenDelayAfterUse;

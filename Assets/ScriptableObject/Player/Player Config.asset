@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82db1e5daf2e28b40970554bf6d1dffb, type: 3}
-  m_Name: GuageCostConfig
-  m_EditorClassIdentifier: Assembly-CSharp::BulletCostConfig
-  normalBulletCost: 0.125
-  burstBulletCost: 1
+  m_Script: {fileID: 11500000, guid: 1b806d15daac833499190f06b2da4f24, type: 3}
+  m_Name: Player Config
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerConfig
+  maxHP: 2
+  invincibilityDuration: 2
+  blinkInterval: 0.1

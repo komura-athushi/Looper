@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1362723b0854848b6c92fcd7145da6, type: 3}
-  m_Name: GuageConfig
-  m_EditorClassIdentifier: Assembly-CSharp::GaugeConfig
-  max: 1
-  regenPerSec: 0.25
-  regenDelayAfterUse: 0.1
+  m_Script: {fileID: 11500000, guid: 82db1e5daf2e28b40970554bf6d1dffb, type: 3}
+  m_Name: BulletGuageCostConfig
+  m_EditorClassIdentifier: Assembly-CSharp::BulletCostConfig
+  normalBulletCost: 0.125
+  burstBulletCost: 1
