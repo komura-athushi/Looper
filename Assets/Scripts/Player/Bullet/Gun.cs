@@ -14,8 +14,8 @@ public class Gun : MonoBehaviour
     {
         if (muzzle == null || bulletPrefab == null) return;
         
-        // もしゲージがマックスなら
-        if (gauge.Normalized >= 1f)
+        // バースト発射可能なら
+        if (gauge.Normalized >= bulletCostConfig.burstBulletCost)
         {
             // バースト発射
             BurstFire();

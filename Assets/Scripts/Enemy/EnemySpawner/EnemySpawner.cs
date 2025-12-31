@@ -27,7 +27,7 @@ public class EnemySpawner: MonoBehaviour
 
     public void SpawnEnemy(Vector3 position)
     {
-        GameObject enemyObject = GameObject.Instantiate(enemyPrefab, position, Quaternion.identity);
-        
+        // Enemyを生成
+        GameObject.Instantiate(enemyPrefab, position, Quaternion.identity);
     }
 }

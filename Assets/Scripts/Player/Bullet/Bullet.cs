@@ -31,15 +31,14 @@ public class Bullet : MonoBehaviour
     {
         // Enemyに衝突したかチェック
         BaseEnemyController enemy = collision.GetComponent<BaseEnemyController>();
-        if(enemy == null)
-        {
-            return; // Enemyじゃなかったら何もしない
-        }
+        // Enemyでなければ何もしない
+        if(enemy == null) return;
+
+        // Enemyにダメージを与える
         enemy.TakeDamage(damageAmount);
-        // 貫通しない場合は弾を消滅させる
-        if (!isPassThrough)
-        {
-            Destroy(gameObject); // 弾を消滅
-        }
+
+        // 貫通弾でなければ弾を消滅させる
+        if (isPassThrough) return;
+        Destroy(gameObject); // 弾を消滅
     }
 }

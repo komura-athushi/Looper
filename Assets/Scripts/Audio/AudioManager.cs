@@ -5,10 +5,10 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     [SerializeField] private SoundDatabase soundDatabase;
-    [SerializeField] private int audioSourcePoolSize = 5;
 
-    [SerializeField] private AudioSource[] _audioSourcePool;
+    private AudioSource[] _audioSourcePool;
     private int _currentIndex = 0;
+    private int audioSourcePoolSize;
 
     private void Awake()
     {
@@ -25,6 +25,7 @@ public class AudioManager : MonoBehaviour
 
     private void InitializePool()
     {
+        audioSourcePoolSize = soundDatabase.GetAudioSourcePoolSize();
         _audioSourcePool = new AudioSource[audioSourcePoolSize];
         for (int i = 0; i < audioSourcePoolSize; i++)
         {

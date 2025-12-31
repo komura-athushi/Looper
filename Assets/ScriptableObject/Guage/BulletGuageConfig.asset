@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GaugeConfig
   max: 1
   regenPerSec: 0.25
-  regenDelayAfterUse: 0.1
+  regenDelayAfterUse: 0
