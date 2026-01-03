@@ -23,14 +23,17 @@ public abstract class BaseEnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
     protected virtual void Update() {
-        MovePattern();
-
         lifeTime -= Time.deltaTime;
         // 生存時間を超えたら消滅
         if (lifeTime <= 0f)
         {
             Destroy(gameObject);
         }
+    }
+
+    protected void FixedUpdate()
+    {
+        MovePattern();
     }
     
     protected abstract void MovePattern(); // 各子クラスで実装
