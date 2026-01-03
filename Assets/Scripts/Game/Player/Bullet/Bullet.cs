@@ -7,20 +7,29 @@ public class Bullet : MonoBehaviour
     [SerializeField] private BulletConfig bulletConfig;
 
     private float speed => bulletConfig.speed;
-    private float lifeTime => bulletConfig.lifeTime;
     private BulletConfig.BulletType bulletType => bulletConfig.bulletType;
     private bool isPassThrough => bulletConfig.isPassThrough;
     private int damageAmount => bulletConfig.damageAmount;
 
-    private float _t;
+    private float screenRightEdge;
+
+    private void Start()
+    {
+        // 画面右端の位置を計算
+        Camera mainCamera = Camera.main;
+        if (mainCamera != null)
+        {
+            screenRightEdge = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
+        }
+    }
 
     private void Update()
     {
         // 可変フレームを考慮
         transform.Translate(Vector3.right * (speed * Time.deltaTime));
 
-        _t += Time.deltaTime;
-        if (_t >= lifeTime)
+        // 画面右端を超えたら削除
+        if (transform.position.x > screenRightEdge)
         {
             Destroy(gameObject);
         }

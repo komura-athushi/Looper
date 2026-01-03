@@ -13,9 +13,6 @@ public class BulletConfig : ScriptableObject
     // 弾のスピード
     [Tooltip("弾のスピード")]
     [SerializeField] public float speed = 12f;
-    // 弾が生成されて消えるまでの時間
-    [Tooltip("弾が生成されて消えるまでの時間(秒)")]
-    [SerializeField] public float lifeTime = 4f;
 
     // 弾の種類、enum形式で選択できるように
     [Tooltip("弾の種類")]

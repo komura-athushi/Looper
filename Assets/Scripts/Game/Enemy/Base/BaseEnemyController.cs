@@ -12,20 +12,25 @@ public abstract class BaseEnemyController : MonoBehaviour
     [SerializeField] protected EnemyConfig config;
     protected Rigidbody2D rb;
     protected int hp;
-    private float lifeTime;
+    private float screenLeftEdge;
     public BaseEnemyController.EnemyType enemyType;
     
     protected virtual void Start()
     {
         hp = config.hp;
-        lifeTime = config.lifeTime;
         enemyType = config.enemyType;
         rb = GetComponent<Rigidbody2D>();
+        
+        // 画面左端の位置を計算
+        Camera mainCamera = Camera.main;
+        if (mainCamera != null)
+        {
+            screenLeftEdge = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
+        }
     }
     protected virtual void Update() {
-        lifeTime -= Time.deltaTime;
-        // 生存時間を超えたら消滅
-        if (lifeTime <= 0f)
+        // 画面左端を超えたら削除
+        if (transform.position.x < screenLeftEdge)
         {
             Destroy(gameObject);
         }
