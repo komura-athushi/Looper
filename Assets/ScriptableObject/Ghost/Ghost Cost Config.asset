@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b24bba7e53d3ff49be9a9dcca0f92cc, type: 3}
-  m_Name: Normal Enemy Config
-  m_EditorClassIdentifier: Assembly-CSharp::NormalEnemyConfig
-  horizontalSpeed: 3
-  hp: 1
-  enemyType: 0
+  m_Script: {fileID: 11500000, guid: 4a8b5f0263b38bc4a8a350a4137474d6, type: 3}
+  m_Name: Ghost Cost Config
+  m_EditorClassIdentifier: Assembly-CSharp::GhostCostConfig
+  ghostCost: 0.4
+  activationTime: 0.2

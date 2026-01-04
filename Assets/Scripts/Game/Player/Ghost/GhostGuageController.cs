@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class EnemyProgressGaugeController : MonoBehaviour, IGaugeController
+public class GhostGuageController : MonoBehaviour, IGaugeController
 {
     [SerializeField] private GaugeConfig config;
 
@@ -13,6 +13,7 @@ public class EnemyProgressGaugeController : MonoBehaviour, IGaugeController
 
     private GaugeModel _model;  // こいつの値を弄るとゲージが変化する
     private float _regenBlockTimer;
+    private bool _isRegenStopped = false; // 回復停止フラグ
 
     private void Awake()
     {
@@ -28,6 +29,12 @@ public class EnemyProgressGaugeController : MonoBehaviour, IGaugeController
             return;
         }
 
+        // 回復停止中は回復しない
+        if (_isRegenStopped)
+        {
+            return;
+        }
+
         _model.Regen(config.regenPerSec * Time.deltaTime);
         Notify();
     }
@@ -35,16 +42,31 @@ public class EnemyProgressGaugeController : MonoBehaviour, IGaugeController
     // ゲージを消費する
     public bool TryConsume(float amount)
     {
-        // 消費可能かチェック
-        if(!_model.CanConsume(amount))
-        {
-            return false;
-        }
         _model.TryConsume(amount);
 
         _regenBlockTimer = config.regenDelayAfterUse;
         Notify();
         return true;
+    }
+
+    // ゲージを0にする
+    public void ConsumeAll()
+    {
+        _model.ConsumeAll();
+        _regenBlockTimer = config.regenDelayAfterUse;
+        Notify();
+    }
+
+    // 回復を停止する
+    public void StopRegen()
+    {
+        _isRegenStopped = true;
+    }
+
+    // 回復を再開する
+    public void ResumeRegen()
+    {
+        _isRegenStopped = false;
     }
 
     private void Notify()

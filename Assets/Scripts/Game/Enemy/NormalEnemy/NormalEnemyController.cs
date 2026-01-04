@@ -5,8 +5,6 @@ public class NormalEnemyController : BaseEnemyController
     // FixedUpdateで呼ばれる
     protected override void MovePattern()
     {
-        Debug.Log(gameController.CurrentPlayerSpeed);
-        Debug.Log(config.horizontalSpeed);
         // 左に移動するだけ
         Vector2 newPosition = rb.position + Vector2.left * ((config.horizontalSpeed + gameController.CurrentPlayerSpeed) * Time.fixedDeltaTime);
         rb.MovePosition(newPosition);

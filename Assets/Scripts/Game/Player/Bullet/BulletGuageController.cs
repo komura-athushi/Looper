@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerGaugeController : MonoBehaviour, IGaugeController
+public class BulletGuageController : MonoBehaviour, IGaugeController
 {
     [SerializeField] private GaugeConfig config;
 
@@ -13,6 +13,7 @@ public class PlayerGaugeController : MonoBehaviour, IGaugeController
 
     private GaugeModel _model;  // こいつの値を弄るとゲージが変化する
     private float _regenBlockTimer;
+    [SerializeField] PlayerController _playerController;
 
     private void Awake()
     {
@@ -22,6 +23,12 @@ public class PlayerGaugeController : MonoBehaviour, IGaugeController
 
     private void Update()
     {
+        // Ghost状態の場合は回復しない
+        if (_playerController.IsGhost)
+        {
+            return;
+        }
+
         if (_regenBlockTimer > 0f)
         {
             _regenBlockTimer -= Time.deltaTime;

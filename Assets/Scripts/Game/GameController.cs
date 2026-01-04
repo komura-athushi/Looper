@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     [Header("設定")]
     [SerializeField] private GameConfig gameConfig;
     [SerializeField] private ResultView resultView;
+    [SerializeField] private PlayerController playerController;
 
     private Transform playerTransform;
 
@@ -80,6 +81,7 @@ public class GameController : MonoBehaviour
         // ゲーム中のみ時間・距離を更新
         if (currentState == GameState.Playing)
         {
+            UpdatePlayerSpeed();
             MeasureTimeAndDistance();
             UpdateEnemyProgress();
         }
@@ -125,6 +127,23 @@ public class GameController : MonoBehaviour
         Debug.Log($"ゴールを生成しました！プレイヤー位置: {playerTransform.position.x:F1}, ゴール位置: {spawnPosition.x:F1}, 距離: {goalDistance:F1}m (標準速度での到達予想時間: {estimatedTime:F1}秒)");
     }
 
+    private void UpdatePlayerSpeed()
+    {
+        if (playerController == null) return;
+
+        // PlayerControllerのGhost状態をチェック
+        if (playerController.IsGhost)
+        {
+            // Ghost状態なら速度を0に
+            currentPlayerSpeed = 0f;
+        }
+        else
+        {
+            // Ghost状態でないなら加速
+            currentPlayerSpeed = Mathf.Min(currentPlayerSpeed + gameConfig.playerSpeedAcceleration * Time.deltaTime, gameConfig.playerSpeed);
+        }
+    }
+
     private void MeasureTimeAndDistance()
     {
         // 経過時間を追跡
@@ -153,6 +172,7 @@ public class GameController : MonoBehaviour
             return;
         }
         resultView.ShowGameClear();
+        playerController.ForceExitGhostMode();
     }
 
     public void SetGameFailed()
@@ -170,6 +190,7 @@ public class GameController : MonoBehaviour
             return;
         }
         resultView.ShowGameFailed();
+        playerController.ForceExitGhostMode();
     }
 
     /// <summary>
