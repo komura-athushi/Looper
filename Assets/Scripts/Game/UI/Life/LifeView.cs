@@ -4,7 +4,7 @@ using UnityEngine.UI;
 /// <summary>
 /// プレイヤーのライフ数に応じてマークを動的に生成・削除する
 /// </summary>
-public class LifeDisplay : MonoBehaviour
+public class LifeView : MonoBehaviour
 {
     [SerializeField] private PlayerController playerController;
     [SerializeField] private Image lifeMarkPrefab;     // ライフマークのプレハブ（Image）

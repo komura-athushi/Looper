@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class EnemyConfig : ScriptableObject
 {
     [Tooltip("横の移動速度(横方向)")]
-    public float speed;  // 横の移動速度
+    public float horizontalSpeed;  // 横の移動速度
     [Tooltip("敵のmax体力")]
     public int hp;  // 体力
 

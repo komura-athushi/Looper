@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class GameController : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class GameController : MonoBehaviour
     // 現在のゲームステート
     public GameState CurrentState => currentState;
 
+    // エネミー進行度関連
+    private EnemyProgressGaugeController enemyProgressGaugeController;
+
     private void Start()
     {
         // プレイヤーをコンポーネントで取得
@@ -58,8 +62,17 @@ public class GameController : MonoBehaviour
         // GameConfigから直接ゴールまでの距離を取得
         goalDistance = gameConfig.distanceToGoal;
 
+
         // ゲーム開始時にゴールを生成
         SpawnGoal();
+
+
+        enemyProgressGaugeController = GetComponent<EnemyProgressGaugeController>();
+        if (enemyProgressGaugeController == null)
+        {
+            Debug.LogWarning("[GameController] enemyProgressGaugeController が設定されておらず、同じ GameObject 上にも見つかりませんでした。Inspectorで割り当てるか、同じオブジェクトにコンポーネントを追加してください。");
+        }
+        
     }
 
     private void Update()
@@ -68,10 +81,11 @@ public class GameController : MonoBehaviour
         if (currentState == GameState.Playing)
         {
             MeasureTimeAndDistance();
+            UpdateEnemyProgress();
         }
         
-        // ゲームクリア時のリトライ入力チェック
-        if (currentState == GameState.GameClear &&
+        // ゲームクリア or Failed時のリトライ入力チェック
+        if ((currentState == GameState.GameClear || currentState == GameState.Failed) &&
             Keyboard.current != null &&
             Keyboard.current.rKey.wasPressedThisFrame)
         {
@@ -141,6 +155,23 @@ public class GameController : MonoBehaviour
         resultView.ShowGameClear();
     }
 
+    public void SetGameFailed()
+    {
+        if (currentState != GameState.Playing) return;
+    
+        currentState = GameState.Failed;
+        Time.timeScale = 0f; // ゲーム全体を停止
+        
+        Debug.Log("Failed!");
+        
+        if(resultView == null)
+        {
+            Debug.LogError("ResultView が設定されていません！");
+            return;
+        }
+        resultView.ShowGameFailed();
+    }
+
     /// <summary>
     /// ゲームをリトライ
     /// </summary>
@@ -148,5 +179,14 @@ public class GameController : MonoBehaviour
     {
         Time.timeScale = 1f; // タイムスケールをリセット
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void UpdateEnemyProgress()
+    {
+        // enemyProgressが100%を超えたら、Failedにする
+        if (enemyProgressGaugeController.Normalized >= 1f)
+        {
+            SetGameFailed();
+        }
     }
 }

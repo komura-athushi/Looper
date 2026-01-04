@@ -13,7 +13,8 @@ public abstract class BaseEnemyController : MonoBehaviour
     protected Rigidbody2D rb;
     protected int hp;
     private float screenLeftEdge;
-    public BaseEnemyController.EnemyType enemyType;
+    public EnemyType enemyType;
+    protected GameController gameController;
     
     protected virtual void Start()
     {
@@ -27,6 +28,7 @@ public abstract class BaseEnemyController : MonoBehaviour
         {
             screenLeftEdge = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
         }
+        gameController = FindFirstObjectByType<GameController>();
     }
     protected virtual void Update() {
         // 画面左端を超えたら削除

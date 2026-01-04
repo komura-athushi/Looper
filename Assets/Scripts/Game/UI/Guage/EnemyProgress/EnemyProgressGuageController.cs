@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerGaugeController : MonoBehaviour
+public class EnemyProgressGaugeController : MonoBehaviour, IGaugeController
 {
     [SerializeField] private GaugeConfig config;
 
@@ -45,14 +45,6 @@ public class PlayerGaugeController : MonoBehaviour
         _regenBlockTimer = config.regenDelayAfterUse;
         Notify();
         return true;
-    }
-
-    // ゲージを0にする
-    public void ConsumeAll()
-    {
-        _model.ConsumeAll();
-        _regenBlockTimer = config.regenDelayAfterUse;
-        Notify();
     }
 
     private void Notify()

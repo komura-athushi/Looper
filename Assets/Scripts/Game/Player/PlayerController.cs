@@ -62,6 +62,17 @@ public class PlayerController : MonoBehaviour
         }
 
         hp -= damage;
+
+        if(hp <= 0)
+        {
+            // GameControllerに通知してゲームオーバー処理を行う
+            GameController gameController = FindFirstObjectByType<GameController>();
+            if (gameController != null)
+            {
+                gameController.SetGameFailed();
+            }
+        }
+
         OnHPChanged?.Invoke(hp);
 
         // ダメージを受けたら無敵状態に

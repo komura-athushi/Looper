@@ -13,4 +13,7 @@ public class GameConfig : ScriptableObject
     
     [Tooltip("ゴールのプレハブ")]
     public GameObject goalPrefab;
+
+    [Tooltip("エネミー進行度の増加量（1秒あたり、100が最大値）")]
+    public float enemyProgressIncreasePerSecond = 0.4f;
 }
