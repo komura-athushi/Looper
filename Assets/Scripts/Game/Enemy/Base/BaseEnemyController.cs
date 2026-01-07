@@ -6,6 +6,8 @@ public abstract class BaseEnemyController : MonoBehaviour
     {
         Normal,
         // 他の敵タイプを追加可能
+        Hopper,
+        Strong
     }
 
 
@@ -14,7 +16,8 @@ public abstract class BaseEnemyController : MonoBehaviour
     protected int hp;
     private float screenLeftEdge;
     public EnemyType enemyType;
-    protected GameController gameController;
+    public GameController gameController;
+    public EnemySpawner enemySpawner;
     
     protected virtual void Start()
     {
@@ -28,8 +31,14 @@ public abstract class BaseEnemyController : MonoBehaviour
         {
             screenLeftEdge = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x;
         }
-        gameController = FindFirstObjectByType<GameController>();
     }
+
+    protected virtual void OnDestroy()
+    {
+        // 敵が破壊されたときにスポーナーに通知
+        enemySpawner.DecreaseSpawnedEnemyCount();
+    }
+
     protected virtual void Update() {
         // 画面左端を超えたら削除
         if (transform.position.x < screenLeftEdge)
@@ -44,7 +53,7 @@ public abstract class BaseEnemyController : MonoBehaviour
     }
     
     protected abstract void MovePattern(); // 各子クラスで実装
-    public virtual void TakeDamage(int damage) { /* 共通 */ }
+    public virtual void TakeDamage(int damage, BulletConfig.BulletType bulletType) { /* 共通 */ }
 
     // プレイヤーに接触したときの処理
     // ダメージを与えて自分は消滅

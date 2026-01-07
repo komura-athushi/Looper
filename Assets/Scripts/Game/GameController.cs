@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
     // 距離表示用にpublicプロパティを提供
     public float TraveledDistance => traveledDistance;
     public float RemainingDistance => Mathf.Max(0, goalDistance - traveledDistance);
+    // 現在のプレイヤー速度(1秒あたり)
     public float CurrentPlayerSpeed => currentPlayerSpeed;
     // プレイヤーのTransform参照を公開
     public Transform PlayerTransform => playerTransform;

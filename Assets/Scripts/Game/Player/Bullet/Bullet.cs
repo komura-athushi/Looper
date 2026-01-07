@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour
         if(enemy == null) return;
 
         // Enemyにダメージを与える
-        enemy.TakeDamage(damageAmount);
+        enemy.TakeDamage(damageAmount, bulletType);
 
         // 貫通弾でなければ弾を消滅させる
         if (isPassThrough) return;

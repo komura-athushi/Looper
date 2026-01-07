@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b24bba7e53d3ff49be9a9dcca0f92cc, type: 3}
-  m_Name: Normal Enemy Config
-  m_EditorClassIdentifier: Assembly-CSharp::NormalEnemyConfig
+  m_Script: {fileID: 11500000, guid: 858ce3cfc0390a34ba397b74133f4b21, type: 3}
+  m_Name: Hopper Enemy Config
+  m_EditorClassIdentifier: Assembly-CSharp::HopperEnemyConfig
   horizontalSpeed: 2
   hp: 1
-  enemyType: 0
+  enemyType: 1
+  verticalSpeed: 3
+  switchInterval: 0.5

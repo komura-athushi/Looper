@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class NormalEnemyController : BaseEnemyController
+public class StrongEnemyController : BaseEnemyController
 {
-    // FixedUpdateで呼ばれる
+        // FixedUpdateで呼ばれる
     protected override void MovePattern()
     {
         // 左に移動するだけ
@@ -13,6 +13,12 @@ public class NormalEnemyController : BaseEnemyController
     public override void TakeDamage(int damage, BulletConfig.BulletType bulletType)
     {
         hp -= damage;
+        if(bulletType == BulletConfig.BulletType.Burst)
+        {
+            // 貫通弾の場合、HPを0にする
+            hp = 0;
+        }
+
         if (hp <= 0)
         {
             Destroy(gameObject);
