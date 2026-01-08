@@ -1,3 +1,4 @@
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GameConfig", menuName = "LOOPER/Game Config")]
@@ -17,6 +18,8 @@ public class GameConfig : ScriptableObject
     [Tooltip("ゴールのプレハブ")]
     public GameObject goalPrefab;
 
-    [Tooltip("エネミー進行度の増加量（1秒あたり、100が最大値）")]
-    public float enemyProgressIncreasePerSecond = 0.4f;
+    [Tooltip("Enemyを4体以上同時に倒したときのボーナス進行度(最大値1)")]
+    public float enemyDefeatBonusProgress = 0.01f;
+    [Tooltip("Strong Enemyを倒したときのボーナス進行度(最大値1)")]
+    public float strongEnemyDefeatBonusProgress = 0.03f;
 }

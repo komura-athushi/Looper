@@ -42,6 +42,12 @@ public class EnemyProgressGaugeController : MonoBehaviour, IGaugeController
         return true;
     }
 
+    public void Regen(float amount)
+    {
+        _model.Regen(amount);
+        Notify();
+    }
+
     private void Notify()
     {
         // ゲージ消費をviewに通知

@@ -10,7 +10,7 @@ public class StrongEnemyController : BaseEnemyController
         rb.MovePosition(newPosition);
     }
 
-    public override void TakeDamage(int damage, BulletConfig.BulletType bulletType)
+    public override bool TakeDamage(int damage, BulletConfig.BulletType bulletType)
     {
         hp -= damage;
         if(bulletType == BulletConfig.BulletType.Burst)
@@ -22,6 +22,8 @@ public class StrongEnemyController : BaseEnemyController
         if (hp <= 0)
         {
             Destroy(gameObject);
+            return true;
         }
+        return false;
     }
 }

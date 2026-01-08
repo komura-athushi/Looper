@@ -53,7 +53,7 @@ public abstract class BaseEnemyController : MonoBehaviour
     }
     
     protected abstract void MovePattern(); // 各子クラスで実装
-    public virtual void TakeDamage(int damage, BulletConfig.BulletType bulletType) { /* 共通 */ }
+    public abstract bool TakeDamage(int damage, BulletConfig.BulletType bulletType);
 
     // プレイヤーに接触したときの処理
     // ダメージを与えて自分は消滅

@@ -42,9 +42,11 @@ public class GameController : MonoBehaviour
     
     // 現在のゲームステート
     public GameState CurrentState => currentState;
-
     // エネミー進行度関連
     private EnemyProgressGaugeController enemyProgressGaugeController;
+    public float EnemyDefeatBonusProgress => gameConfig.enemyDefeatBonusProgress;
+    public float StrongEnemyDefeatBonusProgress => gameConfig.strongEnemyDefeatBonusProgress;
+
 
     private void Start()
     {
@@ -210,5 +212,10 @@ public class GameController : MonoBehaviour
         {
             SetGameFailed();
         }
+    }
+
+    public void DecreaseEnemyProgress(float amount)
+    {
+        enemyProgressGaugeController.TryConsume(amount);
     }
 }
