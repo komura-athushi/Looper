@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82db1e5daf2e28b40970554bf6d1dffb, type: 3}
-  m_Name: BulletGuageCostConfig
+  m_Name: BulletGaugeCostConfig
   m_EditorClassIdentifier: Assembly-CSharp::BulletCostConfig
   normalBulletCost: 0.125
   burstBulletCost: 1

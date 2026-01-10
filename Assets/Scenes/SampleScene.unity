@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 61433115}
   - component: {fileID: 61433114}
   m_Layer: 5
-  m_Name: EnemyProgressGuageBack
+  m_Name: EnemyProgressGaugeBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 94274870}
   - component: {fileID: 94274869}
   m_Layer: 5
-  m_Name: GhostGuageBack
+  m_Name: GhostGaugeBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 206600663}
   - component: {fileID: 206600662}
   m_Layer: 5
-  m_Name: BulletGuageBack
+  m_Name: BulletGaugeBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1133,7 +1133,7 @@ GameObject:
   - component: {fileID: 743645508}
   - component: {fileID: 743645507}
   m_Layer: 5
-  m_Name: GhostGuageFill
+  m_Name: GhostGaugeFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1209,7 +1209,7 @@ GameObject:
   - component: {fileID: 749610951}
   - component: {fileID: 749610954}
   m_Layer: 5
-  m_Name: EnemyProgressGuage
+  m_Name: EnemyProgressGauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1302,7 +1302,7 @@ GameObject:
   - component: {fileID: 821719402}
   - component: {fileID: 821719403}
   m_Layer: 5
-  m_Name: BulletGuage
+  m_Name: BulletGauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1500,7 +1500,7 @@ GameObject:
   - component: {fileID: 1134330738}
   - component: {fileID: 1134330737}
   m_Layer: 5
-  m_Name: BulletGuageFill
+  m_Name: BulletGaugeFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1668,7 +1668,7 @@ GameObject:
   - component: {fileID: 1429051519}
   - component: {fileID: 1429051521}
   m_Layer: 5
-  m_Name: GhostGuage
+  m_Name: GhostGauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2625,7 +2625,7 @@ GameObject:
   - component: {fileID: 1995107714}
   - component: {fileID: 1995107713}
   m_Layer: 5
-  m_Name: EnemyProgressGuageFill
+  m_Name: EnemyProgressGaugeFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
