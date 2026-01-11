@@ -7,25 +7,35 @@ public class Bullet : MonoBehaviour
     [SerializeField] private BulletConfig bulletConfig;
 
     private float speed => bulletConfig.speed;
-    private float lifeTime => bulletConfig.lifeTime;
     private BulletConfig.BulletType bulletType => bulletConfig.bulletType;
     private bool isPassThrough => bulletConfig.isPassThrough;
     private int damageAmount => bulletConfig.damageAmount;
+    private float screenRightEdge;
+    private GameController gameController;
+    private int enemyDefeatCount = 0;
 
-    private float _t;
+    private void Start()
+    {
+        // 画面右端の位置を計算
+        Camera mainCamera = Camera.main;
+        if (mainCamera != null)
+        {
+            screenRightEdge = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x;
+        }
+        gameController = FindFirstObjectByType<GameController>();
+    }
 
     private void Update()
     {
         // 可変フレームを考慮
-        transform.Translate(Vector3.right * (speed * Time.deltaTime));
+        transform.Translate(Vector3.right * ((speed - gameController.CurrentPlayerSpeed) * Time.deltaTime));
 
-        _t += Time.deltaTime;
-        if (_t >= lifeTime)
+        // 画面右端を超えたら削除
+        if (transform.position.x > screenRightEdge)
         {
             Destroy(gameObject);
         }
     }
-
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -35,7 +45,21 @@ public class Bullet : MonoBehaviour
         if(enemy == null) return;
 
         // Enemyにダメージを与える
-        enemy.TakeDamage(damageAmount);
+        bool isDeath = enemy.TakeDamage(damageAmount, bulletType);
+        if(isDeath)
+        {
+            enemyDefeatCount++;
+            // 一定数以上の敵を倒したら進行度をボーナス加算
+            if(enemyDefeatCount == 4)
+            {
+                gameController.DecreaseEnemyProgress(gameController.EnemyDefeatBonusProgress);
+            }
+            // Strong Enemyを倒した場合はさらに進行度をボーナス加算
+            if(enemy.enemyType == BaseEnemyController.EnemyType.Strong)
+            {
+                gameController.DecreaseEnemyProgress(gameController.StrongEnemyDefeatBonusProgress);
+            }
+        }
 
         // 貫通弾でなければ弾を消滅させる
         if (isPassThrough) return;

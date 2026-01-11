@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9dda60b9fa7134cb74b81a982c5804, type: 3}
+  m_Name: Enemy Spawner Config
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnerConfig
+  enemyInfos:
+  - enemyType: 0
+    enemyPrefab: {fileID: 3257912917652623018, guid: a13101e9285ba194cbdab59b9c60e022, type: 3}
+  - enemyType: 1
+    enemyPrefab: {fileID: 1288362703301712764, guid: 353b56d3ac1f5f4499f699d2425600d5, type: 3}
+  - enemyType: 2
+    enemyPrefab: {fileID: 5459602376952076681, guid: 3cfa1f9419d77f540b9e0b0885db93f3, type: 3}
+  enemyWaveInfos:
+  - waveNumber: 1
+    spawnStartDistance: 0
+    spawnInterval: 2
+    spawnInfos:
+    - enemyType: 0
+      spawnProbabilityMin: 100
+      spawnProbabilityMax: 100
+  - waveNumber: 2
+    spawnStartDistance: 40
+    spawnInterval: 2
+    spawnInfos:
+    - enemyType: 0
+      spawnProbabilityMin: 75
+      spawnProbabilityMax: 65
+    - enemyType: 1
+      spawnProbabilityMin: 45
+      spawnProbabilityMax: 35
+  - waveNumber: 3
+    spawnStartDistance: 70
+    spawnInterval: 2
+    spawnInfos:
+    - enemyType: 0
+      spawnProbabilityMin: 55
+      spawnProbabilityMax: 65
+    - enemyType: 1
+      spawnProbabilityMin: 45
+      spawnProbabilityMax: 55
+    - enemyType: 2
+      spawnProbabilityMin: 10
+      spawnProbabilityMax: 10

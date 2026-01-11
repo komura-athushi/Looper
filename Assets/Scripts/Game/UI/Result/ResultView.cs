@@ -4,7 +4,6 @@ using TMPro;
 public class ResultView : MonoBehaviour
 {
     [Header("UI要素")]
-    [SerializeField] private GameObject resultPanel;
     [SerializeField] private TextMeshProUGUI resultTitleText;
     [SerializeField] private TextMeshProUGUI retryHintText;
 
@@ -18,8 +17,15 @@ public class ResultView : MonoBehaviour
     /// </summary>
     public void ShowGameClear()
     {
-        resultPanel.SetActive(true);
+        gameObject.SetActive(true);
         resultTitleText.text = "Game Clear!";
+        retryHintText.text = "Press R to Retry";
+    }
+
+    public void ShowGameFailed()
+    {
+        gameObject.SetActive(true);
+        resultTitleText.text = "Failed!";
         retryHintText.text = "Press R to Retry";
     }
 
@@ -28,6 +34,6 @@ public class ResultView : MonoBehaviour
     /// </summary>
     public void HideResult()
     {
-        resultPanel.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

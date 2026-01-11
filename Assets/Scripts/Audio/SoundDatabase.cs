@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor.EditorTools;
 
 // Autio用のデータベースクラス
 [CreateAssetMenu(menuName = "LOOPER/SoundDatabase")]
