@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameConfig
   playerSpeed: 3
   playerSpeedAcceleration: 1.5
-  distanceToGoal: 500
+  distanceToGoal: 20
   goalPrefab: {fileID: 1884644649632791674, guid: bf59f477d5e59c844b2e0cc14a78d256, type: 3}
-  enemyProgressIncreasePerSecond: 0.4
+  enemyDefeatBonusProgress: 0.01
+  strongEnemyDefeatBonusProgress: 0.03

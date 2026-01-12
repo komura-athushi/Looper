@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 225337963}
   - component: {fileID: 225337965}
   - component: {fileID: 225337966}
+  - component: {fileID: 225337967}
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
@@ -389,7 +390,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 78c7b832c899fa142aef363728264145, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -412,7 +413,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -2525767968858102919, guid: 51612fe4eda519b4ca51d281eab24e4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -431,8 +432,8 @@ Transform:
   m_GameObject: {fileID: 225337962}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9619, y: -4.05, z: 0}
-  m_LocalScale: {x: 44.744453, y: 3.7206147, z: 1}
+  m_LocalPosition: {x: 1.9619, y: -2.61, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -498,18 +499,35 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.7543478, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 15.36, y: 10.24}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 23.701475, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &225337967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225337962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362eb395c10e59a42a0496026e57a226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundScroller
+  gameController: {fileID: 0}
+  targetRenderer: {fileID: 0}
+  scrollMultiplier: 1
+  texturePropertyName: _MainTex
+  tilingX: 1
 --- !u!1 &375549528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2122,7 +2140,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0025971308, y: 0.004520148}
+  m_Offset: {x: 0.00242351, y: 0.35305265}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -2132,7 +2150,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.1481225, y: 0.13936922}
+  m_Size: {x: 0.680287, y: 0.73099524}
   m_EdgeRadius: 0
 --- !u!50 &1851829182
 Rigidbody2D:
@@ -2229,7 +2247,7 @@ Transform:
   m_GameObject: {fileID: 1851829179}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.76, y: -2.18, z: 0}
+  m_LocalPosition: {x: -3.76, y: -2.09, z: 0}
   m_LocalScale: {x: 1.0173109, y: 1.7438049, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
