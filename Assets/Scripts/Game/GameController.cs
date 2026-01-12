@@ -114,7 +114,7 @@ public class GameController : MonoBehaviour
 
         // プレイヤーから右に goalDistance 離れた位置に生成
         Vector3 spawnPosition = playerTransform.position + Vector3.right * goalDistance;
-        spawnPosition.z = 0f;
+        spawnPosition.z = 1f;
 
         // ゴールを生成
         GameObject goalObject = Instantiate(gameConfig.goalPrefab, spawnPosition, Quaternion.identity);
