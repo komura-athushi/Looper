@@ -58,6 +58,10 @@ public class EnemySpawner: MonoBehaviour
     
     private void Update()
     {
+        // GameControllerのStateがPlayingでなければ処理しない
+        if (gameController.CurrentState != GameController.GameState.Playing) return;
+
+
         // 現Waveの決定
         DecideWave();
         // 敵のスポーン決定
@@ -98,7 +102,7 @@ public class EnemySpawner: MonoBehaviour
         }
 
         // 一番spawnProbabilityが高いEnemyInfoを探索
-        EnemyInfo? selectedEnemyInfo = null;
+        EnemyInfo selectedEnemyInfo = null;
         float highestProbability = -1f;
         foreach (var enemyInfo in enemyInfoDict.Values)
         {

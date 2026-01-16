@@ -2,11 +2,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using System.Collections;
 
 public class GameController : MonoBehaviour
 {
     public enum GameState
     {
+        FadeIn,
+        MovePlayer,
+        CountStartTimer,
         Playing,
         GameClear,
         Failed
@@ -16,6 +20,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameConfig gameConfig;
     [SerializeField] private ResultView resultView;
     [SerializeField] private PlayerController playerController;
+    [SerializeField] private CastleController castleController;
+    [SerializeField] private CountNumberController countNumberController;
 
     private Transform playerTransform;
 
@@ -27,7 +33,14 @@ public class GameController : MonoBehaviour
     private float currentPlayerSpeed;
     
     // ゲームステート管理
-    private GameState currentState = GameState.Playing;
+    private GameState currentState = GameState.FadeIn;
+    
+    // フェード関連
+    private bool isWaitingForFadeIn = true;
+    
+    // カウントダウンタイマー関連
+    private float countdownTimer = 3f;
+    private int lastDisplayedNumber = 3;
 
     // 距離表示用にpublicプロパティを提供
     public float TraveledDistance => traveledDistance;
@@ -50,6 +63,12 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        // フェードイン中はゲームを停止
+        Time.timeScale = 0f;
+        
+        // シーンロード完了後にフェードイン開始
+        StartCoroutine(StartFadeInAfterLoad());
+        
         // プレイヤーをコンポーネントで取得
         PlayerController playerCtrl = UnityEngine.Object.FindFirstObjectByType<PlayerController>();
         if (playerCtrl != null)
@@ -78,9 +97,89 @@ public class GameController : MonoBehaviour
         }
         
     }
+    
+    private IEnumerator StartFadeInAfterLoad()
+    {
+        // 1フレーム待機してシーンロード完了を待つ
+        yield return null;
+        
+        // フェードイン開始
+        FadeController.Instance.StartFadeIn();
+    }
 
     private void Update()
     {
+        // フェードイン待機中
+        if (isWaitingForFadeIn)
+        {
+            if (FadeController.Instance.IsFadeIn())
+            {
+                isWaitingForFadeIn = false;
+                Time.timeScale = 1f; // ゲーム開始
+                currentState = GameState.MovePlayer; // ステートをMovePlayerに変更
+                Debug.Log("フェード完了 - ステートをMovePlayerに変更");
+            }
+            return;
+        }
+        
+        // MovePlayerステート（Castle移動中）
+        if (currentState == GameState.MovePlayer)
+        {
+            // CastleControllerをチェック
+            if (castleController == null)
+            {
+                castleController = FindFirstObjectByType<CastleController>();
+            }
+            
+            // Castleの移動が完了したらPlayingステートに変更
+            if (castleController != null && !castleController.IsMoving)
+            {
+                currentState = GameState.CountStartTimer;
+                Time.timeScale = 0f; // 一時停止
+                countdownTimer = 3f; // カウントダウンタイマーを初期化
+                lastDisplayedNumber = 3;
+                
+                // カウントダウン開始時に数字を表示
+                Debug.Log($"[GameController] countNumberControllerが設定されています: {countNumberController.name}");
+                countNumberController.ShowNumber(3);
+                
+                Debug.Log("Castle移動完了 - ステートをCountStartTimerに変更");
+            }
+            return;
+        }
+        
+        // CountStartTimerステート（カウントダウン中）
+        if (currentState == GameState.CountStartTimer)
+        {
+            // unscaledDeltaTimeを使用してTime.timeScale=0でも時間を計測
+            countdownTimer -= Time.unscaledDeltaTime;
+            
+            // 現在表示すべき数字を計算（3→2→1）
+            int currentNumber = Mathf.CeilToInt(countdownTimer);
+            
+            // 数字が変わった時に表示を更新
+            if (currentNumber != lastDisplayedNumber && currentNumber > 0)
+            {
+                lastDisplayedNumber = currentNumber;
+                Debug.Log($"[GameController] ShowNumberを呼び出し: {currentNumber}");
+                countNumberController.ShowNumber(currentNumber);
+                Debug.Log($"カウントダウン: {currentNumber}");
+            }
+            
+            // カウントダウン完了
+            if (countdownTimer <= 0f)
+            {
+                // 数字を非表示
+                countNumberController.HideNumber();
+                
+                // ゲーム開始
+                currentState = GameState.Playing;
+                Time.timeScale = 1f; // ゲーム再開
+                Debug.Log("カウントダウン完了 - ステートをPlayingに変更");
+            }
+            return;
+        }
+        
         // ゲーム中のみ時間・距離を更新
         if (currentState == GameState.Playing)
         {

@@ -4,6 +4,7 @@ using UnityEngine;
 public class GhostGuageController : MonoBehaviour, IGaugeController
 {
     [SerializeField] private GaugeConfig config;
+    [SerializeField] private GameController gameController;
 
     public event Action<float, float> OnGaugeChanged;
 
@@ -23,6 +24,18 @@ public class GhostGuageController : MonoBehaviour, IGaugeController
 
     private void Update()
     {
+        // GameControllerがないか Playing ステートでない場合は回復しない
+        if (gameController == null)
+        {
+            gameController = FindFirstObjectByType<GameController>();
+            if (gameController == null) return;
+        }
+        
+        if (gameController.CurrentState != GameController.GameState.Playing)
+        {
+            return;
+        }
+
         if (_regenBlockTimer > 0f)
         {
             _regenBlockTimer -= Time.deltaTime;
