@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyProgressGaugeController : MonoBehaviour, IGaugeController
 {
     [SerializeField] private GaugeConfig config;
+    [SerializeField] private GameController gameController;
 
     public event Action<float, float> OnGaugeChanged;
 
@@ -16,12 +17,24 @@ public class EnemyProgressGaugeController : MonoBehaviour, IGaugeController
 
     private void Awake()
     {
+        // GameControllerが設定されていない場合は自動取得
+        if (gameController == null)
+        {
+            gameController = FindFirstObjectByType<GameController>();
+        }
+        
         _model = new GaugeModel(config.max, 0.0f);
         Notify();
     }
 
     private void Update()
     {
+        // GameStateがPlaying以外の場合はゲージ操作を行わない
+        if (gameController != null && gameController.CurrentState != GameController.GameState.Playing)
+        {
+            return;
+        }
+        
         if (_regenBlockTimer > 0f)
         {
             _regenBlockTimer -= Time.deltaTime;
