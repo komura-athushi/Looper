@@ -22,14 +22,14 @@ MonoBehaviour:
   enemyWaveInfos:
   - waveNumber: 1
     spawnStartDistance: 0
-    spawnInterval: 2
+    spawnInterval: 3
     spawnInfos:
     - enemyType: 0
       spawnProbabilityMin: 100
       spawnProbabilityMax: 100
   - waveNumber: 2
     spawnStartDistance: 40
-    spawnInterval: 2
+    spawnInterval: 2.2
     spawnInfos:
     - enemyType: 0
       spawnProbabilityMin: 75
