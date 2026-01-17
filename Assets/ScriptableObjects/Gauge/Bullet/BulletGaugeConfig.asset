@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BulletGaugeConfig
   m_EditorClassIdentifier: Assembly-CSharp::GaugeConfig
   max: 1
-  regenPerSec: 0.25
+  regenPerSec: 0.375
   regenDelayAfterUse: 0
