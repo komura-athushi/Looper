@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4622762050052516354}
   - component: {fileID: 6234991133105736518}
   - component: {fileID: 5254389593530952986}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HopperEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

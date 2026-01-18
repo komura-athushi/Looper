@@ -25,7 +25,7 @@ public class ResultView : MonoBehaviour
     public void ShowGameFailed()
     {
         gameObject.SetActive(true);
-        resultTitleText.text = "Failed!";
+        resultTitleText.text = "Game Failed!";
         retryHintText.text = "Press R to Retry";
     }
 
