@@ -13,7 +13,8 @@ public class GameController : MonoBehaviour
         CountStartTimer,
         Playing,
         GameClear,
-        Failed
+        Failed,
+        FadeOut,
     }
 
     [Header("設定")]
@@ -186,6 +187,7 @@ public class GameController : MonoBehaviour
             UpdatePlayerSpeed();
             MeasureTimeAndDistance();
             UpdateEnemyProgress();
+            return;
         }
         
         // ゲームクリア or Failed時のリトライ入力チェック
@@ -194,6 +196,15 @@ public class GameController : MonoBehaviour
             Keyboard.current.rKey.wasPressedThisFrame)
         {
             RetryGame();
+            return;
+        }
+        
+        // FadeOut完了後のシーンリロード処理
+        if (currentState == GameState.FadeOut && FadeController.Instance.IsFadeOut())
+        {
+            Time.timeScale = 1f; // タイムスケールをリセット
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            return;
         }
     }
 
@@ -300,8 +311,8 @@ public class GameController : MonoBehaviour
     /// </summary>
     private void RetryGame()
     {
-        Time.timeScale = 1f; // タイムスケールをリセット
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        currentState = GameState.FadeOut;
+        FadeController.Instance.StartFadeOut();
     }
 
     private void UpdateEnemyProgress()
