@@ -57,7 +57,7 @@ public abstract class BaseEnemyController : MonoBehaviour
 
     // プレイヤーに接触したときの処理
     // ダメージを与えて自分は消滅
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         PlayerController playerController = collision.GetComponent<PlayerController>();
         if(playerController == null) return;
