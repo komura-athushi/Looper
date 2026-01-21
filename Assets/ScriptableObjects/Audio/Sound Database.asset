@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aebfa27af00f8d74aa955836dffc18c4, type: 3}
   m_Name: Sound Database
   m_EditorClassIdentifier: Assembly-CSharp::SoundDatabase
-  sounds:
+  soundEffects:
   - id: fire
     clip: {fileID: 8300000, guid: 66cd8d4062a894c40939e39abb8f590e, type: 3}
-    volume: 1
+    volume: 0.607
     pitch: 1
-    isLoop: 0
+  bgms:
+  - id: game
+    clip: {fileID: 8300000, guid: a12f099db5d258f41913131daf9fa254, type: 3}
+    volume: 0.4
+    pitch: 1
+  audioSourcePoolSize: 5

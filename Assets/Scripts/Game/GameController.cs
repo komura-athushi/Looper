@@ -176,6 +176,7 @@ public class GameController : MonoBehaviour
                 // ゲーム開始
                 currentState = GameState.Playing;
                 Time.timeScale = 1f; // ゲーム再開
+                AudioManager.Instance.PlaySound("game"); // BGM再生
                 Debug.Log("カウントダウン完了 - ステートをPlayingに変更");
             }
             return;
@@ -279,11 +280,8 @@ public class GameController : MonoBehaviour
         
         Debug.Log($"ゲームクリア！経過時間: {elapsedTime:F2}秒");
         
-        if(resultView == null)
-        {
-            Debug.LogError("ResultView が設定されていません！");
-            return;
-        }
+
+        AudioManager.Instance.StopBGM();
         resultView.ShowGameClear();
         playerController.ForceExitGhostMode();
     }
@@ -297,11 +295,7 @@ public class GameController : MonoBehaviour
         
         Debug.Log("Failed!");
         
-        if(resultView == null)
-        {
-            Debug.LogError("ResultView が設定されていません！");
-            return;
-        }
+        AudioManager.Instance.StopBGM();
         resultView.ShowGameFailed();
         playerController.ForceExitGhostMode();
     }
