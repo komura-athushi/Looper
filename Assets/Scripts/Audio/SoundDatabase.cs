@@ -6,15 +6,28 @@ using System.Collections.Generic;
 public class SoundDatabase : ScriptableObject
 {
     // サウンドデータのリスト
-    [Tooltip("サウンドデータのリスト")]
-    [SerializeField] private List<SoundData> sounds = new();
+    [Tooltip("SEデータのリスト")]
+    public List<SoundEffectSoundData> soundEffects = new();
+    [Tooltip("BGMデータのリスト")]
+    public List<BGMData> bgms = new();
 
     [Tooltip("オーディオソースプールのサイズ")]
     [SerializeField] private int audioSourcePoolSize = 5;
 
     public SoundData GetSound(string id)
     {
-        return sounds.Find(s => s.id == id);
+        foreach (var se in soundEffects)
+        {
+            if (se.id == id)
+                return se;
+        }
+
+        foreach (var bgm in bgms)
+        {
+            if (bgm.id == id)
+                return bgm;
+        }
+        return null;
     }
 
     public int GetAudioSourcePoolSize()
