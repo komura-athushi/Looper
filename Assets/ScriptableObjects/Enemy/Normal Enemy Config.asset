@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b24bba7e53d3ff49be9a9dcca0f92cc, type: 3}
   m_Name: Normal Enemy Config
   m_EditorClassIdentifier: Assembly-CSharp::NormalEnemyConfig
-  horizontalSpeed: 1.25
+  horizontalSpeed: 1.1
   hp: 1
   enemyType: 0

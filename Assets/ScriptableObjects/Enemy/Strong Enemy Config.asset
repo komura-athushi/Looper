@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf5a6bce7fd6324fad7c50e0d7826fd, type: 3}
   m_Name: Strong Enemy Config
   m_EditorClassIdentifier: Assembly-CSharp::StrongEnemyConfig
-  horizontalSpeed: 2
+  horizontalSpeed: 1.5
   hp: 10
   enemyType: 2
