@@ -27,8 +27,11 @@ MonoBehaviour:
     - enemyType: 0
       spawnProbabilityMin: 100
       spawnProbabilityMax: 100
+    - enemyType: 0
+      spawnProbabilityMin: 100
+      spawnProbabilityMax: 100
   - waveNumber: 2
-    spawnStartDistance: 40
+    spawnStartDistance: 30
     spawnInterval: 2.2
     spawnInfos:
     - enemyType: 0
@@ -38,7 +41,7 @@ MonoBehaviour:
       spawnProbabilityMin: 45
       spawnProbabilityMax: 35
   - waveNumber: 3
-    spawnStartDistance: 70
+    spawnStartDistance: 60
     spawnInterval: 2
     spawnInfos:
     - enemyType: 0

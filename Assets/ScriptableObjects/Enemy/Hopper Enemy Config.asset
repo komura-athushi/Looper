@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858ce3cfc0390a34ba397b74133f4b21, type: 3}
   m_Name: Hopper Enemy Config
   m_EditorClassIdentifier: Assembly-CSharp::HopperEnemyConfig
-  horizontalSpeed: 2
+  horizontalSpeed: 0.45
   hp: 1
   enemyType: 1
-  verticalSpeed: 3
-  switchInterval: 0.5
+  verticalSpeed: 4
+  switchInterval: 0.56
