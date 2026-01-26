@@ -76,6 +76,7 @@ Shader "Custom/SpriteScrollable"
             }
 
             sampler2D _AlphaTex;
+            float _EnableExternalAlpha;
 
             fixed4 frag(v2f IN) : SV_Target
             {
