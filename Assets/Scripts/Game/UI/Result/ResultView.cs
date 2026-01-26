@@ -5,6 +5,7 @@ public class ResultView : MonoBehaviour
 {
     [Header("UI要素")]
     [SerializeField] private TextMeshProUGUI resultTitleText;
+    [SerializeField] private TextMeshProUGUI resultMessageText;
     [SerializeField] private TextMeshProUGUI retryHintText;
 
     private void Start()
@@ -19,6 +20,7 @@ public class ResultView : MonoBehaviour
     {
         gameObject.SetActive(true);
         resultTitleText.text = "Game Clear!";
+        resultMessageText.text = "国は救われた！！";
         retryHintText.text = "Press R to Retry";
     }
 
@@ -26,6 +28,7 @@ public class ResultView : MonoBehaviour
     {
         gameObject.SetActive(true);
         resultTitleText.text = "Game Failed!";
+        resultMessageText.text = "国は滅びた・・・";
         retryHintText.text = "Press R to Retry";
     }
 

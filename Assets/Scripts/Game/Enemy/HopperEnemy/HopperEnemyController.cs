@@ -33,6 +33,7 @@ public class HopperEnemyController : BaseEnemyController
     public override bool TakeDamage(int damage, BulletConfig.BulletType bulletType)
     {
         hp -= damage;
+        AudioManager.Instance.PlaySE("EnemyDamaged");
         if (hp <= 0)
         {
             Destroy(gameObject);
