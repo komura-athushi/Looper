@@ -37,6 +37,7 @@ public class Ghost : MonoBehaviour
         _isGhostMode = true;
         gauge.StopRegen();
         OnGhostModeChanged?.Invoke(true);
+        AudioManager.Instance.PlaySE("PlayerGhost");
     }
 
     // Ghost状態を停止

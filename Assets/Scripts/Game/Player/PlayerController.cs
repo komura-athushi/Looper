@@ -148,6 +148,7 @@ public class PlayerController : MonoBehaviour
         }
 
         hp -= damage;
+        AudioManager.Instance.PlaySE("PlayerDamaged");
 
         if(hp <= 0)
         {

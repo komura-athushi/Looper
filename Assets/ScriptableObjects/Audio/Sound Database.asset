@@ -13,13 +13,45 @@ MonoBehaviour:
   m_Name: Sound Database
   m_EditorClassIdentifier: Assembly-CSharp::SoundDatabase
   soundEffects:
-  - id: fire
-    clip: {fileID: 8300000, guid: 66cd8d4062a894c40939e39abb8f590e, type: 3}
+  - id: BossDeath
+    clip: {fileID: 8300000, guid: 59dfb70ad3c1276458705377b425cfd0, type: 3}
+    volume: 0.607
+    pitch: 1
+  - id: EnemyDamaged
+    clip: {fileID: 8300000, guid: 941dcada86e8faf4d9a6b13fadc24a9a, type: 3}
+    volume: 0.607
+    pitch: 1
+  - id: GameClear
+    clip: {fileID: 8300000, guid: 09170530872ca8b4f8d22c455029bf8e, type: 3}
+    volume: 0.607
+    pitch: 1
+  - id: GameFailed
+    clip: {fileID: 8300000, guid: 5c0a9cc669bf52a4380d0c7a492ab823, type: 3}
+    volume: 0.607
+    pitch: 1
+  - id: GameStart
+    clip: {fileID: 8300000, guid: 8d9e7ef17c8415c46960c472d0401220, type: 3}
+    volume: 0.607
+    pitch: 1
+  - id: PlayerDamaged
+    clip: {fileID: 8300000, guid: 2fd1371dbea9ccf4b834f437e74a1ab3, type: 3}
+    volume: 0.607
+    pitch: 1
+  - id: PlayerGhost
+    clip: {fileID: 8300000, guid: 6d01ddbca97a55c4e8766a5dcd24cfe5, type: 3}
+    volume: 0.607
+    pitch: 1
+  - id: NormalShot
+    clip: {fileID: 8300000, guid: a64090f7e39e28f4ea05442bb88695fa, type: 3}
+    volume: 0.607
+    pitch: 1
+  - id: BurstShot
+    clip: {fileID: 8300000, guid: 27e0f048d0927164abd68e46c5468cbf, type: 3}
     volume: 0.607
     pitch: 1
   bgms:
-  - id: game
-    clip: {fileID: 8300000, guid: a12f099db5d258f41913131daf9fa254, type: 3}
+  - id: Game
+    clip: {fileID: 8300000, guid: 91530267baf01e5449373abfdb520322, type: 3}
     volume: 0.4
     pitch: 1
   audioSourcePoolSize: 5

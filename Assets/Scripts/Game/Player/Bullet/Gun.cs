@@ -35,7 +35,7 @@ public class Gun : MonoBehaviour
         // 弾発射
         Instantiate(bulletPrefab, transform.position, Quaternion.identity);
         // 通常弾発射音再生
-        AudioManager.Instance.PlaySound("fire");
+        AudioManager.Instance.PlaySE("NormalShot");
     }
 
     private void BurstFire()
@@ -44,6 +44,8 @@ public class Gun : MonoBehaviour
         gauge.TryConsume(bulletCostConfig.burstBulletCost);
         // バースト弾発射
         Instantiate(burstBulletPrefab, transform.position, Quaternion.identity);
+        // バースト弾発射音再生
+        AudioManager.Instance.PlaySE("BurstShot");
     }
 
     private void Awake()

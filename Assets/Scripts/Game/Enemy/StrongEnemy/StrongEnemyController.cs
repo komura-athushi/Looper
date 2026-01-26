@@ -13,6 +13,7 @@ public class StrongEnemyController : BaseEnemyController
     public override bool TakeDamage(int damage, BulletConfig.BulletType bulletType)
     {
         hp -= damage;
+        AudioManager.Instance.PlaySE("EnemyDamaged");
         if(bulletType == BulletConfig.BulletType.Burst)
         {
             // 貫通弾の場合、HPを0にする
@@ -22,6 +23,7 @@ public class StrongEnemyController : BaseEnemyController
         if (hp <= 0)
         {
             Destroy(gameObject);
+            AudioManager.Instance.PlaySE("BossDeath");
             return true;
         }
         return false;

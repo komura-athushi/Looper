@@ -176,7 +176,7 @@ public class GameController : MonoBehaviour
                 // ゲーム開始
                 currentState = GameState.Playing;
                 Time.timeScale = 1f; // ゲーム再開
-                AudioManager.Instance.PlaySound("game"); // BGM再生
+                AudioManager.Instance.PlayBGM("Game"); // BGM再生
                 Debug.Log("カウントダウン完了 - ステートをPlayingに変更");
             }
             return;
@@ -282,6 +282,7 @@ public class GameController : MonoBehaviour
         
 
         AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlaySE("GameClear");
         resultView.ShowGameClear();
         playerController.ForceExitGhostMode();
     }
@@ -296,6 +297,8 @@ public class GameController : MonoBehaviour
         Debug.Log("Failed!");
         
         AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlaySE("GameFailed");
+
         resultView.ShowGameFailed();
         playerController.ForceExitGhostMode();
     }

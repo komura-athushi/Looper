@@ -14,6 +14,8 @@ public class StartController : MonoBehaviour
     void Start()
     {
         playerController.OnReachedEdge += OnPlayerReachedEdge;
+
+        AudioManager.Instance.PlaySE("GameStart");
     }
     
     void Update()
