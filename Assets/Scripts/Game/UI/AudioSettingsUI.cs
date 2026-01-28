@@ -47,18 +47,13 @@ public class AudioSettingsUI : MonoBehaviour
 
     private void OnBGMVolumeChanged(float value)
     {
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.SetBGMVolume(value);
-        }
+        AudioManager.Instance.SetBGMVolume(value);
+        
     }
 
     private void OnSEVolumeChanged(float value)
     {
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.SetSEVolume(value);
-        }
+        AudioManager.Instance.SetSEVolume(value);
     }
 
     private void OnDestroy()
