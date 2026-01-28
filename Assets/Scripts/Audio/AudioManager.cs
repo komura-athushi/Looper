@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource _bgmAudioSource;
     private int _currentSeIndex = 0;
     private int seAudioSourcePoolSize;
+    private string _currentBgmId; // 現在再生中のBGMのID
     
     // ボリューム設定（0.0 ～ 1.0）
     private float _bgmVolume = 1.0f;
@@ -111,6 +112,7 @@ public class AudioManager : MonoBehaviour
     {
         SoundData data = soundDatabase.GetSound(bgmId);
 
+        _currentBgmId = bgmId; // 現在のBGM IDを保持
         _bgmAudioSource.clip = data.clip;
         _bgmAudioSource.volume = data.volume * _bgmVolume; // BGMボリュームを適用
         _bgmAudioSource.pitch = data.pitch;
@@ -123,6 +125,7 @@ public class AudioManager : MonoBehaviour
         SoundData data = soundDatabase.GetSound(bgmId);
         if (data == null || data.clip == null) return;
 
+        _currentBgmId = bgmId; // 現在のBGM IDを保持
         _bgmAudioSource.clip = data.clip;
         _bgmAudioSource.volume = data.volume * _bgmVolume; // BGMボリュームを適用
         _bgmAudioSource.pitch = pitchOverride;
@@ -149,10 +152,10 @@ public class AudioManager : MonoBehaviour
     public void SetBGMVolume(float volume)
     {
         _bgmVolume = Mathf.Clamp01(volume);
-        if (_bgmAudioSource.clip != null)
+        if (_bgmAudioSource.clip != null && !string.IsNullOrEmpty(_currentBgmId))
         {
             // 現在再生中のBGMの音量も更新
-            SoundData data = soundDatabase.GetSound(_bgmAudioSource.clip.name);
+            SoundData data = soundDatabase.GetSound(_currentBgmId);
             if (data != null)
             {
                 _bgmAudioSource.volume = data.volume * _bgmVolume;
@@ -164,6 +167,22 @@ public class AudioManager : MonoBehaviour
     public void SetSEVolume(float volume)
     {
         _seVolume = Mathf.Clamp01(volume);
+        // 再生中のSEの音量も更新
+        foreach (var source in _seAudioSourcePool)
+        {
+            if (source.isPlaying && source.clip != null)
+            {
+                // SEのベース音量を取得して適用
+                foreach (var se in soundDatabase.soundEffects)
+                {
+                    if (se.clip == source.clip)
+                    {
+                        source.volume = se.volume * _seVolume;
+                        break;
+                    }
+                }
+            }
+        }
         SaveVolumeSettings();
     }
     
