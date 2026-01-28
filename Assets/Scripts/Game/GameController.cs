@@ -86,11 +86,6 @@ public class GameController : MonoBehaviour
         // GameConfigから直接ゴールまでの距離を取得
         goalDistance = gameConfig.distanceToGoal;
 
-
-        // ゲーム開始時にゴールを生成
-        SpawnGoal();
-
-
         enemyProgressGaugeController = GetComponent<EnemyProgressGaugeController>();
         if (enemyProgressGaugeController == null)
         {
@@ -178,6 +173,8 @@ public class GameController : MonoBehaviour
                 Time.timeScale = 1f; // ゲーム再開
                 AudioManager.Instance.PlayBGM("Game"); // BGM再生
                 Debug.Log("カウントダウン完了 - ステートをPlayingに変更");
+                // ゲーム開始時にゴールを生成
+                SpawnGoal();
             }
             return;
         }
